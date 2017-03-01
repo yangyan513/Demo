@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/*基于sass的既定规则
+1.没有文件后缀名的时候，sass会添加.scss或者.sass的后缀。
+2.同一目录下，局部文件和非局部文件不能重名。
+
+
+
+
+ 使用css原生@import的既定规则：
+ 1.当@import后边跟的文件名是以.css结尾的时候！
+ 2.当@import后面跟的是http://开头的字符串的时候
+ 3.当@import后面跟的是一个url()函数的时候
+ 4.当@import后面带有media queries的时候
+ 
+ 这四种情况sass就知道是css文件引用的
+ 
+ 
+  变量操作：
+ 1.直接操作变量，即变量表达式。
+ 2.通过函数。
+    .跟代码块无关的函数，多是自己内置函数，称functions.
+    .可重用的代码块，称mixin
+        @include调用
+        @extend调用
+ */
+body {
+  font-family: Arial, Verdana, Helvetica, sans-serrif; }
+
+a {
+  font-size: 12px;
+  font-family: Braggadocio, Arial, Verdana, Helvetica, sans-serrif;
+  font-size: 14px; }
+  a:hover {
+    color: red; }
+
+p {
+  height: 250px; }
+
+p {
+  color: #7f00ff; }
+
+@media (min-width: 768px) {
+  .webdemo-sec {
+    width: 20%;
+    float: left; } }
+.webdemo-sec:hover {
+  background-color: #f5f5f5; }
+
+/*
+ 1.@extend继承多个选择器
+ 2.连续继承
+ 
+ 1.extend不可以继承选择器序列 例 .A .B{}
+ 2.使用%,用于构建只用来继承的选择器。
+ * */
+.serious-error {
+  font: "微软雅黑"; }
+
+.error, .serious-error {
+  color: #f00; }
+
+.serious-error {
+  border: 1px; }
+
+/*sass中的@media跟css区别：
+ *   sass中的media query可以内嵌在css规则中，在生成css的时候，
+ *   media query才会被提到样式的最高层级。
+ * 好处：避免了重复书写选择器或者打乱样式表的流程。
+ * 通过嵌套副作用：
+ *  增加了样式修饰的权重
+ *  制造了这种样式位置的依赖
+ * 
+ * 在嵌套的时候
+ * 使用sass的at-root指令,则不属于他的子级
+ */
+.test_02 {
+  color: red; }
+  .test_02_a {
+    font-size: 50px; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<script type="text/javascript" src="../js/underscore-min.js" ></script>
+		<script type="text/javascript" src="../js/jquery-2.1.1.min.js" ></script>
+		<script type="text/javascript" src="../js/backbone-min.js" ></script>
+		<script type="text/javascript" src="../js/pubsub-min.js" ></script>-->
+		<script type="text/javascript" src="../js/jquery.js" ></script>
+		<script type="text/javascript" src="../js/underscore.js" ></script>
+		<script type="text/javascript" src="../js/backbone.js" ></script>
+		<script type="text/javascript" src="../js/pubsub-min.js" ></script>
+		<script type="text/javascript">
+			//1.异步编程之回调函数
+			function f12(num){
+				console.log("1.异步编程之回调函数");
+				console.log(num+1);
+			}
+			function f11(arr,callback){
+				//reduce方法有两个参数，第一个参数是一个callback，用于针对数组项的操作；第二个参数则是传入的初始值，这个初始值用于单个数组项的操作。需要注意的是，reduce方法返回值并不是数组，而是形如初始值的经过叠加处理后的操作。
+				var total = arr.reduce(function(a,b,index,arr){
+					return a+b;
+				});
+				return callback && callback(total);
+			}
+			f11([1,2,3,4,5],f12);
+			
+			//2、异步编程之时间监听
+			
+			function f21(arr){
+				//reduce方法有两个参数，第一个参数是一个callback，用于针对数组项的操作；第二个参数则是传入的初始值，这个初始值用于单个数组项的操作。需要注意的是，reduce方法返回值并不是数组，而是形如初始值的经过叠加处理后的操作。
+				var total = arr.reduce(function(a,b,index,arr){
+					return a+b;
+				});
+				f21.trigger('done',total);
+			}
+			function f22(total){
+				console.log("2.异步编程之事件监听");
+				console.log(total + 1);
+			}  
+//			_.extend(f21, Backbone.events);
+//			f21.on('done',f22);
+//			f21([1,2,3,4,5]);
+			
+			//3.异步编程之发布订阅
+			function f31(arr){
+				var total = arr.reduce(function(a,b,index,arr){
+					return a+b;
+				});
+				$.publish('done',total);
+			}
+			function f32(_,total){
+				console.log("3.异步编程之发布订阅");
+				console.log(total+1);
+			}
+//			$.subscribe('done',f32);
+//			f31([1,2,3,4,5]);
+			//4.异步编程之promise
+			function f41(arr){
+				var dtd = $.Deferred();
+				window.setTimeout(function(){
+					var total = arr.reduce(function(a,b,index,arr){
+						return a + b;
+					});
+					dtd.resolve(total);
+				},1000);
+				return dtd;
+			}
+			function f42(total){
+				console.log("4.异步编程之promise");
+				console.log(total+1);
+			}
+			f41([1,2,3,4,5]).then(f42);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>First Backbone.js</title>
+  <script src="jquery.js" type="text/javascript"></script>
+  <script src="underscore.js" type="text/javascript"></script>
+  <script src="backbone.js" type="text/javascript"></script>
+  <script>
+		var app;
+		//定义一个叫firstbackbone的路由。
+		/*
+		   用通俗的说法就是新建了一个类，并且继承自Backbone.Router，
+		   但javascript并不存在实际意义上的类，仅仅只是通过某些技巧达到类的效果
+		*/
+		var router = Backbone.Router.extend({
+		  routes: {
+			'': 'firstbackbone'
+		  },
+		  //初始化对象时执行,现在暂时没用
+		  initialize: function(){
+		  },
+		  //与上面创建的名字保存一致
+		  //添加创建和渲染 View 的逻辑。View()传给View、render()传给render()
+		  firstbackbone: function(){
+			this.homeView = new homeView;
+			this.homeView.render();
+		  }
+		});
+		var homeView = Backbone.View.extend({
+		  //el是从视图的tagName、className或者id等属性中创建的元素，没有这些值el就是空div
+		  //el 是一个保存 jQuery 选择器的字符串，也可以使用'.'作为类和'#'作为ID名
+		  el: 'body',
+		  //template属性被赋值给传入值的Underscore.js 函数template 运行的结果
+		  template: _.template('Hello First Bockbone.js'),
+		  //视图需要重绘便会调render方法
+		  render: function(){
+			this.$el.html(this.template({}));
+		  }
+		});
+		//调用了 Backbone.history.start 方法，这个方法可以让我们在点击后退或者前进的时候同样会触发路由的事件
+		$(document).ready(function(){
+		  //实例化Router
+		  app = new router;
+		  // 打开 Backbone 的历史记录
+		  Backbone.history.start();      
+		})
+  </script>
+</head>
+<body>
+		<div></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>node.js资料</title>
+	</head>
+	<body>
+		<a href="http://www.runoob.com/nodejs/nodejs-npm.html"></a>
+		<h1>Node.js由以下部分组成：</h1>
+		<ol start="1">
+			<li>引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。</li>
+			<li>创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</li>
+			<li>接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</li>
+		</ol>
+		<h1>NPM使用介绍</h1>
+		NPM的随同NodeJs一起安装的包管理工具，能解决Nodejs代码部署上很多问题。
+		<ul>
+			<li>允许用户从NPM服务器下载别人编写的第三方包到本地使用。</li>
+			<li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
+			<li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
+		</ul>
+		如果你安装的是旧版本的 npm，可以很容易得通过 npm 命令来升级，命令如下：
+			$ sudo npm install npm -g
+			/usr/local/bin/npm -> /usr/local/lib/node_modules/npm/bin/npm-cli.js
+			npm@2.14.2 /usr/local/lib/node_modules/npm
+
+			如果是 Window 系统使用以下命令即可：npm install npm -g
+			
+			使用淘宝镜像的命令：   cnpm install npm -g
+		<h1>使用npm命令安装模块</h1>
+		npm install <Module Name>
+			例：安装express    npm install express
+			npm install express          # 本地安装
+			npm install express -g   # 全局安装
+		如果出现以下错误：
+		npm err! Error: connect ECONNREFUSED 127.0.0.1:8087 
+		解决办法为：
+		$ npm config set proxy null
+		本地安装
+		    1. 将安装包放在 ./node_modules 下（运行 npm 命令时所在的目录），如果没有 node_modules 目录，会在当前执行 npm 命令的目录下生成 node_modules 目录。
+		    2. 可以通过 require() 来引入本地安装的包。 
+		全局安装
+		
+		    1. 将安装包放在 /usr/local 下或者你 node 的安装目录。
+		    2. 可以直接在命令行里使用
+		<h1>命令</h1>
+		 查看全局安装的模块：	 $ npm ls -g
+		 卸载模块：npm uninstall express
+		更新模块: npm update express
+		搜索模块： npm seach express
+		创建模块： npm init [生成package.json文件]
+		注册用户（使用邮箱注册）：npm adduser
+		发布模块：npm publish
+		清空NPM本地缓存：npm cache clear
+		可以撤销发布自己发布过的某个版本代码:npm unpublish <package>@<version>
+		<h1>版本号</h1>
+		语义版本号分为X.Y.Z三位，分别代表主版本号、次版本号和补丁版本号。
+		<ul>
+			<li>如果只是修复bug，需要更新Z位。</li>
+			<li>如果是新增了功能，但是向下兼容，需要更新Y位。</li>
+			<li>如果有大变动，向下不兼容，需要更新X位。</li>
+		</ul>
+		<h1>使用淘宝NPM镜像</h1>
+		使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:
+			$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+		这样就可以使用 cnpm 命令来安装模块了：
+			$ cnpm install [name]
+		<h1>Node.js REPL（交互式解释器）</h1>
+		读取-读取用户输入，解析输入了JavaScript数据结构并存储在内存中。
+		执行-执行输入的数据结构
+		打印-输出结果
+		循环-循环操作以上步骤直到用户两次按下ctrl+c按钮推出。
+		
+		使用变量:变量声明需要使用 var 关键字，如果没有使用 var 关键字变量会直接打印出来。使用 var 关键字的变量可以使用 console.log() 来输出变量。
+		下划线（_）变量:使用下划线(_)获取表达式的运算结果：
+		例：var x = 2; var y = 1; x+y var sum = _   console.log(sum);//30
+		<h1>REPL命令</h1>
+		ctrl+c  退出当前终端
+		ctrl+c  按下两次-退出Node REPL
+		ctrl+d  退出Node REPL
+		向上/向下键  查看输入的历史命令
+		tab键  列出当前命令
+		.help  列出使用命令
+		.break/.clear 退出多行表达式
+		.save filename 保存当前的Node REPL 会话到指定文件
+		.load filename 载入当前Node REPL会话内容
+		<h1>Node.js事件循环</h1>
+		Node.js 是单进程单线程应用程序，但是通过事件和回调支持并发，所以性能非常高。
+		Node.js 的每一个 API 都是异步的，并作为一个独立线程运行，使用异步函数调用，并处理并发。
+		Node.js 基本上所有的事件机制都是用设计模式中观察者模式实现。
+		Node.js 单线程类似进入一个while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数.
+		<h1>Node.js EventEmitter</h1>
+		Node.js所有的异步I/O 操作在完成时都会发送一个事件到事件队列。
+		events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装
+		所有这些产生事件的对象都是 events.EventEmitter 的实例。
+		EventEmitter 对象如果在实例化时发生错误，会触发 'error' 事件。当添加新的监听器时，'newListener' 事件会触发，当监听器被移除时，'removeListener' 事件被触发。
+		EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件，EventEmitter 支持 若干个事件监听器。
+		<h1>Node.js Buffer(缓冲区)</h1>
+		Buffer类用来创建一个专门存放二进制数据的缓存区。一个 Buffer 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存。
+		创建Buffer类
+		方法一： var buf = new Buffer(10);//创建长度为 10 字节的 Buffer 实例
+		方法二： var buf = new Buffer([10,20,30]);//创建长度为 10 字节的 Buffer 实例
+		方法三： var buf = new Buffer("www.runoob.com", "utf-8"); //通过一个字符串来创建 Buffer 实例  ;utf-8 是默认的编码方式，此外它同样支持以下编码："ascii", "utf8", "utf16le", "ucs2", "base64" 和 "hex"。
+		<h2>写入Node缓冲区</h2>
+		buf.write(string[, offset[,length]][,encoding]);
+		<ul>
+			<li>string - 写入缓冲区的字符串。</li>
+			<li>offset - 缓冲区开始写入的索引值，默认为 0 。</li>
+			<li>length - 写入的字节数，默认为 buffer.length</li>
+			<li>encoding - 使用的编码。默认为 'utf8' 。</li>
+		</ul>
+		<h2>从缓冲区读取数据</h2>
+		buf.toString([encoding[, start[,end]]]);
+		<ul>
+			<li>encoding - 使用的编码。默认为 'utf8' 。</li>
+			<li>start - 指定开始读取的索引位置，默认为 0。</li>
+			<li>end - 结束位置，默认为缓冲区的末尾。</li>
+		</ul>
+		buf.toJSON();转JSON
+	</body>
+</html>

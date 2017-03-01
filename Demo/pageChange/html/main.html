@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+	<body>
+		<header class="topHeader">
+			<nav>
+				<ul class="top-nav">
+					<li><a href="#">首页</a></li>
+					<li><a href="#">产品与服务</a></li>
+					<li><a href="#">安全资讯</a></li>
+					<li><a href="#">帮助支持</a></li>
+					<li><a href="#">首页</a></li>
+				</ul>
+			</nav>
+		</header>
+		<!--<div class="main">-->
+		<div class="left-sidebar">
+			<header class="left-hearder">后台管理</header>
+			<div class="left-menu">
+				<header class="menu-header" id="assetManager" onclick="changePage('menu_2.html');"><span class="triangle"></span>&nbsp;资产管理</header>
+			</div>
+			<div class="left-menu">
+				<header class="menu-header"><span class="triangle"></span>&nbsp;个人中心</header>
+				<ul class="left-submenu">
+					<li><a href="#" onclick="changePage('menu_1.html');">基本信息</a></li>
+					<li><a href="#" onclick="changePage('menu_3.html');">密码修改</a></li>
+				</ul>
+			</div>
+			<div class="left-menu">
+				<header class="menu-header"><span class="triangle"></span>&nbsp;安全功能</header>
+				<ul class="left-submenu">
+					<li><a href="#">云WAF</a></li>
+					<li><a href="#">网站安全监测</a></li>
+					<li><a href="#">APP安全检测</a>
+						<ul>
+							<li>检测报告</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div class="content" id="content">
+				ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />ddd<br />
+			</div>
+		</div>
+		<!--</div>-->
+		<script type="text/javascript" src="../../js/jquery-2.1.1.min.js" ></script>
+		<script type="text/javascript">
+			function changePage(url){
+				$.ajax({
+					"url":url,
+					"type":"GET",
+					success: function(data){
+			        	$("#content").html(data)
+			       }
+				});
+			}
+			$(function(){
+				$("#assetManager").click();
+			});
+		</script>
+	</body>
+</html>
