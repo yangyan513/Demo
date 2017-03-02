@@ -56,6 +56,9 @@
 		$ git branch dev
 		$ git checkout dev
 		git branch  查看当前所有分支，当前分支前多一个*<br />
-		切回到master分支  git checkout master,合并到master分支上  git merge dev, 删除分支 git branch -d dev
+		切回到master分支  git checkout master,合并到master分支上  git merge dev, 删除分支 git branch -d dev<br/>
+		git log --graph --pretty=oneline --abbrev-commit
+		当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+		用git log --graph命令可以看到分支合并图。
 	</body>
 </html>
