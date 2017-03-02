@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>git相关命令</title>
+	</head>
+	<body>
+	<p>上传项目，到当前所上传的项目的目录下</p>
+	git init
+	git add README.md
+	git commit -m "first commit"
+	git remote add origin git@github.com:yangyan513/Demo.git
+	git push -u origin master
+	
+	<p>自报家门</p>
+	$ git config --global user.name "Your Name"<br />
+	$ git config --global user.email "email@example.com"
+	<strong>创建版本库</strong>
+	mkdir learngit<br/>
+	cd learngit<br/>
+	pwd:命令用于显示当前目录<br/>
+	git init :把这个目录变成Git可以管理的仓库，该目录下会出现.git的目录<br />
+	如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。
+	<strong>把文件添加到仓库，添加新文件和修改的都如此两步</strong>
+	git add 文件名<br/>
+	get commit -m '注释'  //可以add很多文件以后，一次用commit提交<br/>
+	git status :查看状态<br/>
+	git diff  ：查看文件修改了哪些内容<br/>
+	<strong>版本回退</strong>
+	git log查看文件修改的日志记录<br/>
+	如果嫌输出信息太多，看得眼花缭乱的，可以试试加上--pretty=oneline参数<br/>
+	git reset --hard HEAD^ ：回滚到上一次提交 。HEAD^可以替换成commitid  --hard含义：<br/>
+	cat <file> 查看文件内容<br/>
+	Git在内部有个指向当前版本的HEAD指针<br/>
+	git reflog ：记录每一次命令<br />
+	git diff HEAD -- <file> :查看工作区和版本库里面最新版本的区别<br/>
+	git checkout -- file 可以丢弃工作区的修改：<u>如果没有--则的切换到另一支分支</u><br/>
+	两种情况：一种没有放到暂存区，撤销修改就回到和版本库一模一样的状态；二种添加到到暂存区，在修改，则撤销到暂存区的状态。<br/>
+	git reset HEAD <file> 没有提交，只是添加到暂存区，可把暂存区的修改回退到工作区<br/>
+	rm <file> //删除工作区的文件。如果确定删除该文件 则 git rm  git commit;如果删错了，版本库还有，则撤回 git checkout -- <file><br/>
+	<h4>生成ssh秘钥</h4>
+	ssh-keygen -t rsa -C "你的gtihub的邮箱"<br/>
+	id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人<br/>
+	把本地仓库与之关联：<br/>
+	 git remote add origin git@github.com:michaelliao/learngit.git<br/>
+	 git push -u origin master	：就可以把本地库的所有内容推送到远程库上：<br/>
+	 git push命令，实际上是把当前分支master推送到远程。第一次远程库的空的时候 加上-u,，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来<br/>
+	</body>
+</html>
