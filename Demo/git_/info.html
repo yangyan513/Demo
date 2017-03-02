@@ -57,9 +57,15 @@
 		$ git checkout dev
 		git branch  查看当前所有分支，当前分支前多一个*<br />
 		切回到master分支  git checkout master,合并到master分支上  git merge dev, 删除分支 git branch -d dev<br/>
-		git log --graph --pretty=oneline --abbrev-commit
-		当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
-		用git log --graph命令可以看到分支合并图。
-		master		first2
+		git log --graph --pretty=oneline --abbrev-commit  查看分支合并信息<br/>
+		当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。<br/>
+		用git log --graph命令可以看到分支合并图。<br/>
+		准备合并dev分支，请注意--no-ff参数，表示禁用Fast forward：$ git merge --no-ff -m "merge with no-ff" dev<br/>
+		git stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作<br/>
+		git stash list 查看隐藏的工作区； git stash apply 恢复  ==》  git stash drop  删除stash  这两部等于git stash pop<br />
+		多次stash   git stash apply stash@{0}<br/>
+		强制删除分支  git branch -D <name><br/>
+		查看远程库信息 git remote  ,详细信息 git remote -v  如果没有看到push，则没有推送权限<br/>
+		git push origin master  git push <远程分支> <本地分支>  推送分支
 	</body>
 </html>
