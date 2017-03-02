@@ -51,5 +51,11 @@
 		关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
 		此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
 	 </div>
+	 <h3>创建分支</h3>
+	 git checkout -b  name  :命令加上-b参数表示创建并切换.相当于以下两条命令：<br/>
+		$ git branch dev
+		$ git checkout dev
+		git branch  查看当前所有分支，当前分支前多一个*<br />
+		切回到master分支  git checkout master,合并到master分支上  git merge dev, 删除分支 git branch -d dev
 	</body>
 </html>
