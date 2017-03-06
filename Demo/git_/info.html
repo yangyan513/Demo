@@ -52,6 +52,7 @@
 		此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
 	 </div>
 	 <h3>创建分支</h3>
+	 <p>本地创建分支如果不推送到远程，对其他人就是不可见的，使用git push origin branch-name 推送分支，如果推送失败，就用git pull先抓取新的代码</p>
 	 git checkout -b  name  :命令加上-b参数表示创建并切换.相当于以下两条命令：<br/>
 		$ git branch dev
 		$ git checkout dev
@@ -67,5 +68,29 @@
 		强制删除分支  git branch -D <name><br/>
 		查看远程库信息 git remote  ,详细信息 git remote -v  如果没有看到push，则没有推送权限<br/>
 		git push origin master  git push <远程分支> <本地分支>  推送分支
+		<h3>抓取分支</h3>
+		git clone file   ,如果需要在分支上面开发，则必须建立远程origin的分支：git checkout -b 分支名 origin/dev<br/>
+		如果代码和小伙伴有冲突,先git pull把最新代码抓取下来，然后在本地合并，解决冲突。<br />
+		本地分支和远程分支建立连接   git branch --set-upstream 分支名  origin/分支名
+		<h1>多人协作的工作模式</h1>
+		<ol start="1">
+			<li>首先，可以试图用git push origin branch-name推送自己的修改；</li>
+			<li>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</li>
+			<li>如果合并有冲突，则解决冲突，并在本地提交；</li>
+			<li>没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！</li>
+			<li>如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。</li>
+		</ol>
+		<h2>标签管理</h2>
+		首先切到需求打标签的分支，然后 git tag <name>,查看所有标签，git tag。如果忘记打标签，则查询日志 git log --pretty=oneline -- abbrev-commit  然后找到对应的id打标签 git tag name id,标签不按时间顺序列出，而是按字母排序，可以用git show name查看标签信息。
+		<h4>创建带有说明的标签</h4>
+		git tag -a name -m '说明' id: -a指定标签名，-m指定说明文字<br/>
+		git tag -s v0.2 -m "signed version 0.2 released" fec145a:签名采用PGP签名，因此，必须首先安装gpg（GnuPG），如果没有找到gpg，或者没有gpg密钥对，就会报错<br/>
+		git tag -d tagname[删除本地]/git push origin :refs/tags/tagname [如果推送到远程的，则先删除本地，然后从远程删除]  ：删除标签<br />
+		git push origin tagname[推送某一次]/git push origin --tags[推送本地所有未推送的标签]:推送到远程。
+		<h2>自定义git</h2>
+		<strong>--global表示全局参数</strong>
+		git config --galbal color.ui true :让git显示颜色
+		忽略特殊文件，比如不提交的，则在工作区目录下创建一个.gitignore文件，然后把特殊的文件名给填写进去，且也需要提交到远程仓库。如果想添加的文件被忽略了则强制添加 git add -f file,或者发现是哪里写的有问题，则用 git chek-ignore -v file<br />
+		git config --global alias.st status :配置别名，即st == status
 	</body>
 </html>
