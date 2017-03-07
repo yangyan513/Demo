@@ -88,6 +88,22 @@
 			  });<br/>
 			};<br/>
 		<h1>顶层对象的属性</h1>
-		在浏览器环境指的是window对象，在Node中指的是global
+		在浏览器环境指的是window对象，在Node中指的是global<br />
+		this的局限性<br />
+		<ol start="1">
+			<li>全局环境中，this会返回顶层对象。但是，Node模块和ES6模块中，this返回的是当前模块。</li>
+			<li>函数里面的this,如果函数不是作为对象的方法运行，而是单纯作为函数运行，this会指向顶层对象。但是严格模式下，这时this会返回undefined。</li>
+			<li>不管是严格模式，还是普通模式，new Function('return this')()，总是会返回全局对象。但是，如果浏览器用了CSP（Content Security Policy,内容安全政策），那么eval、new Function这些方法都可以无法使用。</li>
+		</ol>
+		<h1>数组的解构赋值</h1>
+		<p>es6允许按照一定模式，从数组和对象中提取，对变量进行赋值，这被称为解构</p>
+		例： let [a,v,c] = [1,2,3];  console.log(a);//1<br/>
+		    let [head,...tail] = [1,2,3,4]; //head :1   tail:[2,3,4]<br />
+		    let [x,y,...z] = ['a']; //x :'a' y:undefined  z//[]
+		<strong>不完全解构，即等号左边的模式，只匹配一部分的等号右边的数组</strong>
+		例：let [x,y] = [1,2,3]; //x :1  y:2     let [a, [b], d] = [1, [2, 3], 4];  //a:1  b:2  d:4<br/>
+		如果等号的右边不是数组[要么转为对象以后没有iterator借口，或者本身就不具备Iterator接口]，将会报错。只要某种数据结构具有Iterator接口，都可以采用数组形式的解构赋值。<br/>
+		let [x,y,z] = new Set(['a','b','c']); // x:a
+		
 	</body>
 </html>
