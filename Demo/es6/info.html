@@ -104,6 +104,32 @@
 		例：let [x,y] = [1,2,3]; //x :1  y:2     let [a, [b], d] = [1, [2, 3], 4];  //a:1  b:2  d:4<br/>
 		如果等号的右边不是数组[要么转为对象以后没有iterator借口，或者本身就不具备Iterator接口]，将会报错。只要某种数据结构具有Iterator接口，都可以采用数组形式的解构赋值。<br/>
 		let [x,y,z] = new Set(['a','b','c']); // x:a
-		
+		<h1>默认值</h1>
+		let [foo = true] = []; foo:true<br />
+		let [x, y = 'b'] = ['a', undefined]; // x='a', y='b'<br/>
+		let [x = 1] = [null]; //x :null  如果一个数组成员是null,默认值就不会生效，因为null不严格等于undefined。
+		<h3>对象的解构赋值</h3>
+		结构不仅可以用于数组，还可以用于对象。  let {foo , bar} = { foo:"aaa",bar:"bbb"}  foo:"aaa"  bar:"bbb"<br />
+		如果变量名与属性名不一致，必须写成下面这样。var { foo: baz } = { foo: 'aaa', bar: 'bbb' }; baz // "aaa"<br />
+		let { foo: baz } = { foo: "aaa", bar: "bbb" };baz // "aaa"  foo // error: foo is not defined上面代码中，foo是匹配的模式，baz才是变量。真正被赋值的是变量baz，而不是模式foo。注意，采用这种写法时，变量的声明和赋值是一体的。对于let和const来说，变量不能重新声明，所以一旦赋值的变量以前声明过，就会报错。<br />
+		如果解构模式失败，变量的值等于undefined。<br />
+		字符串的解构赋值: const [a,b,c,d,e] = 'hello';  a:h b:e c:l d:l e:o       let {length:len} = 'hello';  len:5 <br />
+		<strong>解构赋值的规则是，只要等号右边的值不是对象或数组，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。</strong>  let { prop: x } = undefined; // TypeError    let { prop: y } = null; <br />
+		<h4>解构赋值的用途</h4>
+		<ol start="1">
+			<li>交换变量的值</li>
+			<li>从函数返回多个值</li>
+			<li>函数参数的定义</li>
+			<li>提取JSON数据</li>
+			<li>函数参数的默认值</li>
+			<li>遍历Map结构</li>
+			<li>输入模块的指定方法：const { SourceMapConsumer, SourceNode } = require("source-map");</li>
+		</ol>
+		<hr />
+		<h1>字符串的扩展</h1>
+		ES6提供了codePointAt方法，能够正确处理4个字节储存的字符，返回一个字符的码点。如果想要十六进制的值，则用toString(16)转一下。使用for...of循环，它会正确识别32位的UTF-16字符。<br />
+		var s = '𠮷a';   for (let ch of s) {  console.log(ch.codePointAt(0).toString(16));  } <br />
+	    codePointAt方法的测试一个字符由两个字节还是由四个字节组成的最简单方法。 function is32Bit(c) {  return c.codePointAt(0) > 0xFFFF;}  <br />
+	    String.fromCodePoint() 用于从码点返回对应字符.
 	</body>
 </html>
