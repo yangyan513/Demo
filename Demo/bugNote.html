@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title>bug日志</title>
+	</head>
+	<body>
+		<h1>Swiper插件</h1>
+		<p>元素隐藏以后，不再自动滑动。其解决方案：隐藏之前先调用stopAutoPlay()事件，显示时再调用startAutoPlay()即可。</p>
+		<h1>默认图片效果 例：</h1>
+		<p>for(var i=0;i<videos.length;i++){
+			var imgFile = videos[i].media_info.posters[0].url+"?imageView2/2/w/" + ref.newwidth + "/h/"+ ref.newheight;
+			var img = new Image();
+			setTimeout(function(img,file){
+				img.onload = function(){//图片下载成功
+					img.onload = null;
+					var imgObj = $("[data-src='"+file+"']");
+					imgObj.addClass("opacity-animation").removeAttr("data-src");
+					imgObj.css("background-image","url("+file+")");
+				}
+				img.src = imgFile;
+			}(img,imgFile));
+		}</p>
+		<h1>touch</h1>
+		<h2>touchend不触发</h2>
+		<p>如果触发了 touchmove, touchend 就不会被触发了, 而且 touchmove 没有持续触发.然而, 只要在 touchstart 的时候调用下 event.preventDefault(), 即可让其他事件都正常被触发了!</p>
+		<h2>Jquery绑定touch事件 获取 touches等属性</h2>
+		<p>jquery:e.originalEvent.touches </p>
+		<p>Js:e.touches</p>
+		<ul>
+			<li>touches:当前屏幕上所有触摸点的集合列表</li>
+			<li>targetTouches: 绑定事件的那个结点上的触摸点的集合列表</li>
+			<li>changedTouches: 触发事件时改变的触摸点的集合</li>
+		</ul>
+		<p>举例来说，比如div1, div2只有div2绑定了touchstart事件，第一次放下一个手指在div2上，触发了touchstart事件，这个时候，三个集合的内容是一样的，都包含这个手指的touch，然后，再放下两个手指一个在div1上，一个在div2上，这个时候又会触发事件，但changedTouches里面只包含第二个第三个手指的信息，因为第一个没有发生变化，而targetTouches包含的是在第一个手指和第三个在div2上的手指集合，touches包含屏幕上所有手指的信息，也就是三个手指。</p>
+		<ol>
+			<li>clientX:触摸目标在视口中的X坐标。</li>
+			<li>clientY:触摸目标在视口中的Y坐标。</li>
+			<li>identifier：表示触摸的唯一ID。</li>
+			<li>pageX：触摸目标在页面中的x坐标。</li>
+			<li>pageY：触摸目标在页面中的y坐标。</li>
+			<li>screenX:触摸目标在屏幕中的x坐标。</li>
+			<li>screenY:触摸目标在屏幕中的y坐标。</li>
+			<li>target:触摸的DOM节点坐标</li>
+		</ol>
+		<h1>禁止图片被拽动</h1>
+		<p>给图片绑定mousedown事件，并取消默认事件preventDefault()</p>
+	</body>
+</html>
