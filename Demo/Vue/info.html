@@ -9,5 +9,84 @@
 		Vue的核心库只关注视图层，它不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与文件组件和Vue生态系统支持的库结合使用时，Vue也完全能够为复杂的单页应用程序提供驱动。
 		https://cn.vuejs.org/v2/guide/
 		https://cn.vuejs.org/v2/guide/comparison.html
+		通过 v-once指令，执行一次性地插值，当数据改变时，插值处的内容不会更新，
+		<san v-once>This will never change {{msg}}</san>
+		双大括号会将数据解释为纯文本，而非HTML.为了输出真正的HTML,你需要使用v-html指令：
+		<div v-html="rawHtml"></div>
+		不能再HTML属性中使用，应使用v-bind指令：
+		<div v-bind:id="dynamicId"></div>
+		对于JavaScript表达式的支持
+		{{ number + 1 }}
+		{{ ok ? 'YES' : 'NO' }}
+		{{ message.split('').reverse().join('') }}
+		<div v-bind:id="'list-' + id"></div>
+		这些表达式会在所属 Vue 实例的数据作用域下作为 JavaScript 被解析。有个限制就是，每个绑定都只能包含单个表达式，所以下面的例子都不会生效。
+		<!-- 这是语句，不是表达式 -->
+		{{ var a = 1 }}
+		<!-- 流控制也不会生效，请使用三元表达式 -->
+		{{ if (ok) { return message } }}
+		
+		模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。
+		
+		每个Vue实例都会代理其选项对象里的data属性。
+		<strong>v-bind</strong> 指令可以在其名称后面带一个参数，中间放一个冒号，这个参数通常是HTML元素的特性(attribute)，例如:v-bind:class，可缩写成一个冒号：
+		v-bind:class="{active:isActive,'text-danger':hasError}"  data:{isActive:true,hasError:false}  渲染为： <div class="active"></div>
+		<p>也可以绑定一个数据里的对象：<div v-bind:class="classObject"></div></p>
+		data：{
+			classObject：{
+				active:true,
+				'text-danger':false
+			}
+		}
+		渲染结果和上面一样。
+		<strong>v-on</strong>指令用于给监听DOM事件，可缩写成为@符号
+		<p>绑定一个方法（让事件指向方法的引用），或者使用内联语句 </p>
+		<p>修饰符是以半角句号.指明特殊后缀，用于指出一个指令应该以特殊方式绑定。</p>
+		<p>例：.prevent 修饰符告诉 v-on 指令对于触发的事件的调用 event.preventDefault()    <br/>
+			<form v-on:submit.prevent="onSubmit"></form>
+		</p>
+		<strong>v-for</strong> 
+		<ul>
+			<li>v-for="item in items"</li>
+			<li>v-for="(item,index) in items"</li>
+			<li>v-for="value in object"   {{value}}   迭代的是一个对象</li>
+			<li>v-for="（value，key) in object"   {{key}}:{{value}}   迭代的是一个对象</li>
+			<li>v-for="（value，key,index) in object"   {{index}}.{{key}}:{{value}}   迭代的是一个对象</li>
+		</ul>
+		<p>由于JavaScript的限制，Vue不能检测一下变动的数组</p>
+		<p>1.当你利用索引直接设置一个项时，例如：vm.items[indexOfTtem] = newValue</p>
+		<p>2.当你修改数组的长度时，例如：vm.items.length = newLength</p>
+		为了解决这一类问题，以下两种方式可以实现和vm.items[indexOfItem] = newValue 相同的效果，同时也将处触发状态更新：
+		<p>Vue.set(example1.items,indexOfItem,newValue)</p>
+		<p>example1.items.splice(indexOfItem,1,newValue)</p>
+		解决第二类问题:
+		<p>example1.items.splice(newLength)</p>
+		有时也需要在内联语句处理器中访问原生DOM事件。可以用特殊变量$event把它传入方法：
+		<p> <button v-on:click="warn('Form cannot be submitted yet.',$event)">Submit</button> </p>
+		method:{
+			marn:function(message,event){
+				if(event) event.preventDefault();
+				alert(message);
+			}
+		}
+		<p>事件修饰符[.stop 阻止事件冒泡   .prevent    .capture  .self  .once]</p>
+		<ul>
+			<li> 阻止单击事件冒泡：<a v-on:click.stop="doThis"></a></li>
+			<li><提交事件不再重载页面 :<form v-on:submit.prevent="onSubmit"></form></li>
+			<li>修饰符可以串联  :<a v-on:click.stop.prevent="doThat"></a></li>
+			<li>< 只有修饰符 :<form v-on:submit.prevent></form></li>
+			<li> 添加事件侦听器时使用事件捕获模式 :<div v-on:click.capture="doThis">...</div></li>
+			<li> 只当事件在该元素本身（而不是子元素）触发时触发回调 :<div v-on:click.self="doThat">...</div></li>
+			<li>2.1.4 新增   点击事件将只会触发一次 ：<a v-on:click.once="doThis"></a></li>
+		</ul>
+		<strong>按键修饰符</strong>
+		例：<input v-on:keyup.13='submit' />
+		<p>全部的按键别名： .enter  .tab  .delete (捕获“删除”和“退格”键  .esc  .space  .up   .down  .left  .right)</p>
+		<p>可以通过 config.keyCodes  对象自定义按键修饰符别名：  Vue.config.keyCodes.f1 = 112     使用 v-on:keyup.f1</p>
+		2.1.0新增  可以用如下修饰符开启鼠标或键盘事件监听，使在按键按下时发生响应。   .ctrl .alt  .shift  .meta
+		<p>Alt + C : <input @keyup.alt.67="clear"</p>
+		<p>Ctrl + Click : <div  @click.ctrl="doSomething">Do something</div></p>
+		修饰符
+		v-model.lazy    .number  .trim
 	</body>
 </html>
