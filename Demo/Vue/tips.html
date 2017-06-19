@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue知识点</title>
+	</head>
+
+	<body>
+		<ol>
+			<li>vue 1.0 ele属性可以是标签如html ，而 vue2.0只允许是id#id，且只能是body标签内的id</li>
+			<li> 关于修改vue绑定的数组对象没有反应一说
+				<p>vue是通过检测get,set才得知数据是否更新的，而对于数组来说，是没有get，set方法的，所以需要我们自己手动触发，需要发送消息通知vue</p>
+				<p> 例如：</p>
+				<p>this.contents[index].name="change";</p>
+				<p> Vue.set(this.contentLists, index, this.contentLists[index]);</p>
+			</li>
+		</ol>
+	</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小程序学习记录</title>
+	</head>
+	<body>
+		Page.prototype.setData()
+		setData 函数用于将数据从逻辑层发送到视图层，同时改变对应的 this.data 的值
+		注意：
+		1.直接修改this.data而不调用this.setData是无法改变页面的状态的，还会造成数据不一致
+		2.单词设置的数据不能超过1024kb,请尽量避免一次设置过多的数据。
+		例如：修改一个数组的值
+		this.setData({
+	      'array[0].text':'changed data'
+	    })
+	    路由：Tips
+	    1、navigateTo,redirectTo 只能打开非 tabBar 页面
+	    2、switchTab 只能打开tabBar 页面。
+	    3、reLaunch 可以打开任意页面
+	    4、页面底部的 tabBar 由页面决定，即只要是定义为tabBar的页面，底部都有 tabBar
+	    5、调用页面路由带的参数可以在目标页面的onLoad中获取。
+	    文件作用域：
+	    在JavaScript文件中声明的变量和函数只在该文件中有效；不同的文件血中可以声明相同名字的变量和函数，不会互相影响。
+	 模块化：
+	 我们可以将一些公共的代码抽离称为一个单独的js文件，作为一个模块。模块只有通过 module.exports 或者 exports 才对外暴露接口。
+	 1、exports 是 module.exports 的一个引用，因此在模块里面随意更改 exports 的指向会造成未知的错误。所以我们更推荐开发者采用module.exports 来暴露模块接口，除非你已经很清晰知道这两者的关系。
+	 2、小程序目前不支持直接引用 node_modules,开发者需要使用到 node_modules 的时候建议拷贝出相关的代码到小程序 的目录中。
+	 数据绑定： 
+	 	扩展运算符 ...   把一个对象展开。
+	 	如果对象的key和value相同，也可以间接地表达。 {{foo,bar}}
+	 	如果存在变量名相同的情况，后边的会覆盖前面。
+	条件渲染：
+		wx:if 控制属性，需要将它添加到一个标签上。
+		<block/> 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性。
+		wx:if 和 hidden ： wx:if 有更高的切换消耗而 hidden 有更高的初始渲染消耗。因此，如果需要频繁切换的情景下，用hidden更好，如果在运行时条件不大可能改变则 wx:if 较好。
+	模板拥有自己的作用域，只能使用data传入的数据。
+	dataset  data-alpha-bata=    - 会转成驼峰写法  大写会转为小写
+	引用：
+	import 可以在该文件中使用目标文件定义的 template ,如： 在item.wxml 中定义了 template,在要用的 index.wxml 中引用了 itemwxml，就可以使用 模板了。
+	<import src="item.wxml"/>
+	import的作用域，即只会import 目标文件中定义的 template，而不会import目标文件import的template
+	include 可以将目标文件除了 <template/> 的整个代码引入，相当于是拷贝到 include位置
+	
+	WXSS
+		rpx:可以根据屏幕宽度进行自适应，规定屏幕宽度为 750rpx;
+		1rpx = 0.5px = 1物理像素
+		注意： 在较小的屏幕上不可避免的会有一些毛刺，请在开发时尽量避免这种情况。
+		样式导入
+		使 @import 语句可以导入外联样式表， @import 后跟需要导入的外联样式表的相对路径，用; 表示语句结束。
+		
+	组件： 所有组件与属性都是小写，以连字符 - 连接
+	
+	组件
+		可滚动视图区域，去除滚动轴
+		::-webkit-scrollbar {
+		 width: 0;
+		 height: 0;
+		 color: transparent;
+		}
+	</body>
+</html>
