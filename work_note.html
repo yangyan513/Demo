@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>工作日志</title>
+		<style type="text/css">
+			.sidebar{
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 200px;
+				height: 100%;
+			}
+			.content{
+				padding-left: 220px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="sidebar">
+			<ul>
+				<li><a href="#DvdFab_Service">DvdFab Service</a></li>
+			</ul>
+		</div>
+		<div class="content">
+			<h1 id="DvdFab_Service">DvdFab Service</h1>
+			<p>前端7人，后端6人，对于片源管理的云系统。主要负责主页及搜索。项目所用相关技术，vue2.0、vue-lic、webpack、element-ui、vueX</p>
+			<h3>0911</h3>
+			<ol start="a">
+				<li>切图，整合成雪碧图</li>
+				<li>调整头部搜索样式【同事写了一部分】</li>
+				<li>完成首页样式整体布局【利用element ui（Popover, Tooltip） 完成 图标提示和视图弹出框效果】</li>
+			</ol>
+			<h3>0912</h3>
+			<ol start="a">
+				<li>调整搜索框及搜索结果显示及隐藏逻辑</li>
+				<li>整理更多搜索结果页</li>
+				<li>图片屏幕收展时做适配，图片翻页展示【原生js，静态数据】</li>
+			</ol>
+			<h3>0913</h3>
+			<ol start="a">
+				<li>调 【首页最近添加电影和剧集】接口</li>
+				<li>https 拦截器修改【接口数据格式返回不一致做兼容】</li>
+				<li>结合接口调整 滚屏逻辑，滚屏图片出现加缓冲效果</li>
+			</ol>
+			<h3>0914</h3>
+			<ol start="a">
+				<li>滚屏分批加载数据，数据不渲染【数组值改变vue没有监听到，使用that.$set(arr, i, obj]),解决】</li>
+				<li>搜索框结合虚拟接口添加逻辑，添加loading样式</li>
+				<li>首页选择添加快捷键，及css3相关效果</li>
+			</ol>
+			<h3>0915</h3>
+			<ol start="a">
+				<li>搜索调节接口，电影返回并跳转详情页面。</li>
+				<li>首页添加loading缓冲效果。</li>
+				<li>多语言文件，部分命名调整</li>
+			</ol>
+			<h3>0918</h3>
+			<ol start="a">
+				<li>刷新icon样式及切图，数据刷新时的loading样式修改。</li>
+				<li>心跳接口和影库刷新接口，接口写了，数据返回还存在问题。</li>
+				<li>首页和搜索结果删除和批量删除逻辑。</li>
+				<li>修改数据减少时的删除数组代码。</li>
+			</ol>
+		</div>
+	</body>
+</html>

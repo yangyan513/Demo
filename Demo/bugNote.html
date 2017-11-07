@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="{CHARSET}">
+		<meta charset="utf-8">
 		<title>bug日志</title>
 	</head>
 	<body>
@@ -45,7 +45,24 @@
 		</ol>
 		<h1>禁止图片被拽动</h1>
 		<p>给图片绑定mousedown事件，并取消默认事件preventDefault()</p>
-		<h1>行内块元素错开  和   子元素设置margin-top渲染到父元素上面</h1>
-		<p>两个情况的解决方法 ： 行内块元素  、   父元素 加 属性 overflow：hidden;</p>
+		<p>Vue渲染的时候 尽量不要以驼峰命名法</p>
+		<h1>nicescroll的插件</h1>
+		<ol start="1">
+			<li>3.6.8版本 移动端无法使用</li>
+			<li>3.2.0版本 数据变多变少会导致滚动条无法滚动</li>
+			<li>3.6.6版本 不存在以上版本所存在的问题。</li>
+		</ol>
+		<h1>字体描边：text-shadow: #ee6d55 2px 0 0, #ee6d55 0 2px 0, #ee6d55 -2px 0 0, #ee6d55 0 -2px 0;</h1>
+		<h1>解决打开一个链接被拦截的问题</h1>
+		var tempwindow=window.open();
+		tempwindow.location = url;
+		setTimeout(function(){
+			tempwindow.close();
+		},1000);
+		<h1>Flex布局</h1>
+		<ol start="A">
+			<li>平均等分：flex-basis:0;</li>
+			<li>单行省略号：flex-grow元素或者父元素设置overflow: hidden;</li>
+		</ol>
 	</body>
 </html>
